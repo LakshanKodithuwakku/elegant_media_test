@@ -184,29 +184,19 @@ class _LoginScreenState extends State<LoginScreen> {
         final email = await fb
             .getUserEmail(); // Get email (since we request email permission)
 
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: ((context) => HotelListScreen(
-                      fbAccessToken: accessToken!.token,
-                      fbName: profile!.name!,
-                      fbId: profile.userId!,
-                      fbEmail: email ?? "lk@gmail.com",
-                    ))));
-
         // But user can decline permission
-        if (email != null) {
+        if (email != null || profile != null) {
           print('And your email is $email');
 
           //push to success page after successfully signed in
-          Navigator.push(
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: ((context) => HotelListScreen(
                         fbAccessToken: accessToken!.token,
                         fbName: profile!.name!,
                         fbId: profile.userId!,
-                        fbEmail: email!,
+                        fbEmail: email ?? "lakshankodithuwakku604@gmail.com",
                       ))));
           break;
         }
@@ -219,8 +209,4 @@ class _LoginScreenState extends State<LoginScreen> {
         break;
     }
   }
-
-  /*_facebookLogout() async{
-    accessToken! = null;
-  }*/
 }

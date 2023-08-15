@@ -3,11 +3,12 @@ import 'package:elegant_media_test/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 import '../components/custom_button_widget.dart';
 import '../constants/colors.dart';
+import '../constants/constant.dart';
 import '../models/hotel_model.dart';
 import '../services/hotel_service.dart';
 
-
 List<Hotel> hotels = [];
+
 class HotelListScreen extends StatefulWidget {
   final String fbName;
   final String fbEmail;
@@ -16,10 +17,10 @@ class HotelListScreen extends StatefulWidget {
 
   const HotelListScreen(
       {Key? key,
-        required this.fbName,
-        required this.fbEmail,
-        required this.fbId,
-        required this.fbAccessToken})
+      required this.fbName,
+      required this.fbEmail,
+      required this.fbId,
+      required this.fbAccessToken})
       : super(key: key);
 
   @override
@@ -29,7 +30,6 @@ class HotelListScreen extends StatefulWidget {
 class _HotelListScreenState extends State<HotelListScreen> {
   bool isLoading = true;
   final HotelService _hotelService = HotelService();
-
 
   @override
   void initState() {
@@ -56,12 +56,14 @@ class _HotelListScreenState extends State<HotelListScreen> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('List View',
+        title: Text(
+          'List View',
           style: new TextStyle(
             color: textBlack,
             fontSize: width * 0.06,
             fontWeight: FontWeight.w500,
-          ),),
+          ),
+        ),
         backgroundColor: appbarcolor,
         centerTitle: true,
       ),
@@ -69,18 +71,27 @@ class _HotelListScreenState extends State<HotelListScreen> {
         children: [
           Expanded(
             flex:
-            1, // You can adjust the flex value to control the distribution of remaining space
+                1, // You can adjust the flex value to control the distribution of remaining space
             child: Container(
               child: Center(
                 child: Column(
                   children: [
-                    Text(widget.fbName, style: TextStyle(fontSize: 25),),
-                    Text(widget.fbEmail, style: TextStyle(
-                      color: textGrey,
-                    ),),
+                    Text(
+                      widget.fbName,
+                      style: TextStyle(fontSize: 25),
+                    ),
+                    Text(
+                      widget.fbEmail,
+                      style: TextStyle(
+                        color: textGrey,
+                      ),
+                    ),
                     CustomButtonWidget(
                       onTap: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => LoginScreen())));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => LoginScreen())));
                       },
                       title: "Logout",
                     ),
@@ -91,54 +102,66 @@ class _HotelListScreenState extends State<HotelListScreen> {
           ),
           Container(
             height: height * 0.7,
-            child: isLoading ? Center(child: CircularProgressIndicator(color: appbarcolor,)) : ListView.builder(
-              itemCount: hotels.length,
-              itemBuilder: (context, index) {
-                final hotel = hotels[index];
-                return Column(
-                  children: [
-                    ListTile(
-                      title: Text(hotel.title,style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600
-                      ),),
-                      subtitle: Text(hotel.address,
-                        style: TextStyle(
-                            color: textGrey,
-                        ),
-                      ),
-                      leading: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: appbarcolor,
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage("https://assets.vogue.in/photos/5ce435fecc50be4b0d1402b4/2:3/w_2560%2Cc_limit/Shivani-the-Indian-artist-from-Now-United.jpg"),
-                    //  hotel.smallImage),
+            child: isLoading
+                ? Center(
+                    child: CircularProgressIndicator(
+                    color: appbarcolor,
+                  ))
+                : ListView.builder(
+                    itemCount: hotels.length,
+                    itemBuilder: (context, index) {
+                      final hotel = hotels[index];
+                      return Column(
+                        children: [
+                          ListTile(
+                            title: Text(
+                              hotel.title,
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w600),
+                            ),
+                            subtitle: Text(
+                              hotel.address,
+                              style: TextStyle(
+                                color: textGrey,
+                              ),
+                            ),
+                            leading: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: appbarcolor,
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(//  hotel.smallImage,
+                                      /*dummyImgURL),*/
+                                      fbPropImgURL),
+                                ),
+                              ),
+                            ), //Icon(Icons.star),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => DetailScreen(
+                                            hotelId: hotel.id,
+                                          ))));
+                            },
                           ),
-                        ),
-                      ), //Icon(Icons.star),
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: ((context) => DetailScreen(hotelId: hotel.id,))));
-                      },
-                    ),
-                    Container(
-                      width: width*0.9,
-                      child: Divider(
-                        height: 1,
-                        color: textGrey,
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
+                          Container(
+                            width: width * 0.9,
+                            child: Divider(
+                              height: 1,
+                              color: textGrey,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
           ),
         ],
       ),
     );
   }
 }
-

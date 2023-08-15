@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../constants/constant.dart';
 import '../models/hotel_model.dart';
 
 class HotelService {
-  final String _baseUrl =
-      'https://dl.dropboxusercontent.com/s/6nt7fkdt7ck0lue/hotels.json';
+  final String _baseUrl = hotelAPI;
 
   Future<List<Hotel>> fetchHotels() async {
     final response = await http.get(Uri.parse(_baseUrl));
