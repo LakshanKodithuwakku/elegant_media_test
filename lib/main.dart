@@ -1,3 +1,4 @@
+import 'package:elegant_media_test/screens/hotel_list_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: ,
+      home: HotelListScreen(),
     );
   }
 }
