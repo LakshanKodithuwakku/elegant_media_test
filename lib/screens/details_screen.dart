@@ -1,3 +1,4 @@
+import 'package:elegant_media_test/screens/map_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
@@ -17,7 +18,7 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
-    final int index = widget.hotelId;
+    final int index = widget.hotelId - 1;
     final hotel = hotels[index];
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -41,7 +42,7 @@ class _DetailScreenState extends State<DetailScreen> {
           IconButton(
             icon: Icon(Icons.location_pin),
             onPressed: () {
-              // Add your onPressed functionality here
+              Navigator.push(context, MaterialPageRoute(builder: ((context) => MapScreen(hotelId: hotel.id,))));
             },
           ),
         ],
@@ -62,14 +63,20 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
             ),
           ),
-          Text(
-            hotel.title,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              hotel.title,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            ),
           ),
-          Text(
-            hotel.description,
-            style: TextStyle(
-              color: textGrey,
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text(
+              hotel.description,
+              style: TextStyle(
+                color: textGrey,
+              ),
             ),
           )
         ],
