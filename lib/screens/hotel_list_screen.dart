@@ -1,8 +1,11 @@
+import 'package:elegant_media_test/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 import '../models/hotel_model.dart';
 import '../services/hotel_service.dart';
 
+
+List<Hotel> hotels = [];
 class HotelListScreen extends StatefulWidget {
   @override
   _HotelListScreenState createState() => _HotelListScreenState();
@@ -11,7 +14,7 @@ class HotelListScreen extends StatefulWidget {
 class _HotelListScreenState extends State<HotelListScreen> {
   bool isLoading = true;
   final HotelService _hotelService = HotelService();
-  List<Hotel> _hotels = [];
+
 
   @override
   void initState() {
@@ -21,9 +24,9 @@ class _HotelListScreenState extends State<HotelListScreen> {
 
   Future<void> _fetchHotels() async {
     try {
-      final hotels = await _hotelService.fetchHotels();
+      final _hotels = await _hotelService.fetchHotels();
       setState(() {
-        _hotels = hotels;
+        hotels = _hotels;
         isLoading = false;
       });
     } catch (e) {
@@ -83,9 +86,9 @@ class _HotelListScreenState extends State<HotelListScreen> {
           Container(
             height: height * 0.7,
             child: isLoading ? Center(child: CircularProgressIndicator(color: appbarcolor,)) : ListView.builder(
-              itemCount: _hotels.length,
+              itemCount: hotels.length,
               itemBuilder: (context, index) {
-                final hotel = _hotels[index];
+                final hotel = hotels[index];
                 return Column(
                   children: [
                     ListTile(
@@ -112,7 +115,7 @@ class _HotelListScreenState extends State<HotelListScreen> {
                         ),
                       ), //Icon(Icons.star),
                       onTap: () {
-                        // Handle tap
+                        Navigator.push(context, MaterialPageRoute(builder: ((context) => DetailScreen(hotelId: hotel.id,))));
                       },
                     ),
                     Container(
