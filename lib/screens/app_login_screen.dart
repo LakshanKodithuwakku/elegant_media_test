@@ -145,6 +145,8 @@ class _LoginScreenState extends State<LoginScreen> {
       ],
     );
   }
+
+
   _facebookLogin() async {
     // Create an instance of FacebookLogin
     final fb = FacebookLogin();
@@ -197,4 +199,8 @@ class _LoginScreenState extends State<LoginScreen> {
         break;
     }
   }
+
+  /*_facebookLogout() async{
+    accessToken! = null;
+  }*/
 }

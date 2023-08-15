@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../constants/colors.dart';
 import 'hotel_list_screen.dart';
@@ -12,10 +15,15 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+
+
   @override
   Widget build(BuildContext context) {
     final int index = widget.hotelId - 1;
     final hotel = hotels[index];
+    double latValue = double.parse(hotel.latitude) ;
+    double lngValue = double.parse(hotel.longitude) ;
+    LatLng sourceLocation = LatLng(latValue, lngValue);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -36,6 +44,17 @@ class _MapScreenState extends State<MapScreen> {
         ),
         backgroundColor: appbarcolor,
         centerTitle: true,
+      ),
+      body: GoogleMap(
+        initialCameraPosition: CameraPosition(
+          target: sourceLocation,
+        ),
+        markers: {
+          Marker(
+            markerId: MarkerId("source"),
+            position: sourceLocation,
+          ),
+        },
       ),
     );
   }

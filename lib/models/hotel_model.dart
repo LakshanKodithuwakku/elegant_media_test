@@ -4,6 +4,8 @@ class Hotel {
   final String description;
   final String address;
   final String smallImage;
+  final String latitude;
+  final String longitude;
 
   Hotel({
     required this.id,
@@ -11,6 +13,8 @@ class Hotel {
     required this.description,
     required this.address,
     required this.smallImage,
+    required this.longitude,
+    required this.latitude
   });
 
   factory Hotel.fromJson(Map<String, dynamic> json) {
@@ -20,6 +24,8 @@ class Hotel {
       description: json['description'],
       address: json['address'],
       smallImage: json['image']['small'],
+      latitude: json['latitude'],
+      longitude: json['longitude'],
     );
   }
 }

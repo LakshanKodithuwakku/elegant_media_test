@@ -42,7 +42,8 @@ class _DetailScreenState extends State<DetailScreen> {
           IconButton(
             icon: Icon(Icons.location_pin),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => MapScreen(hotelId: hotel.id,))));
+              Navigator.push(context, MaterialPageRoute(builder: ((context) => MapScreen(hotelId: hotel.id,
+              ))));
             },
           ),
         ],
