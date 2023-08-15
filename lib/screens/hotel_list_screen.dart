@@ -1,5 +1,7 @@
+import 'package:elegant_media_test/screens/app_login_screen.dart';
 import 'package:elegant_media_test/screens/details_screen.dart';
 import 'package:flutter/material.dart';
+import '../components/custom_button_widget.dart';
 import '../constants/colors.dart';
 import '../models/hotel_model.dart';
 import '../services/hotel_service.dart';
@@ -76,20 +78,11 @@ class _HotelListScreenState extends State<HotelListScreen> {
                     Text(widget.fbEmail, style: TextStyle(
                       color: textGrey,
                     ),),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Add your onPressed logic here
+                    CustomButtonWidget(
+                      onTap: () {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => LoginScreen())));
                       },
-                      style: ElevatedButton.styleFrom(
-                        primary: appbarcolor, // Set the background color
-                        onPrimary: textWhite, // Set the text color
-                        padding: EdgeInsets.symmetric(horizontal: 80, vertical: 10), // Set padding
-                        textStyle: TextStyle(fontSize: 18), // Set text style
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5), // Set border radius
-                        ),
-                      ),
-                      child: Text("Logout"),
+                      title: "Logout",
                     ),
                   ],
                 ),

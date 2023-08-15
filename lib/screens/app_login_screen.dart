@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar:  AppBar(
+      appBar: AppBar(
         title: Text(
           "Login",
           style: new TextStyle(
@@ -51,13 +51,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 80,
               ),
               Container(
-                height: width*0.15,
-                width: width*0.6,
+                height: width * 0.15,
+                width: width * 0.6,
                 decoration: BoxDecoration(
                   color: appbarcolor,
                   image: DecorationImage(
                     fit: BoxFit.fitWidth,
-                    image: AssetImage('assets/images/elegant_media_logo.jpg'),),
+                    image: AssetImage('assets/images/elegant_media_logo.jpg'),
+                  ),
                 ),
               ),
               SizedBox(
@@ -72,7 +73,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 30,
               ),
               CustomButtonWidget(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => HotelListScreen(
+                              fbName: "Sample Name",
+                              fbEmail: "sample@gmail.com",
+                              fbId: "fbId",
+                              fbAccessToken: "fbAccessToken"))));
+                },
                 title: "Login",
               ),
               SizedBox(
@@ -134,18 +144,17 @@ class _LoginScreenState extends State<LoginScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
+        Tab(icon: Image.asset("assets/images/applelogo.png")),
         Tab(
-            icon: Image.asset("assets/images/applelogo.png")),
-        Tab(icon: GestureDetector(
-            onTap: () {
-              _facebookLogin();
-            },
-            child: Image.asset("assets/images/facebook.png"))),
+            icon: GestureDetector(
+                onTap: () {
+                  _facebookLogin();
+                },
+                child: Image.asset("assets/images/facebook.png"))),
         Tab(icon: Image.asset("assets/images/googleicon.png")),
       ],
     );
   }
-
 
   _facebookLogin() async {
     // Create an instance of FacebookLogin
@@ -170,24 +179,30 @@ class _LoginScreenState extends State<LoginScreen> {
         final email = await fb
             .getUserEmail(); // Get email (since we request email permission)
 
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => HotelListScreen(
-          fbAccessToken: accessToken!.token,
-          fbName: profile!.name!,
-          fbId: profile.userId!,
-          fbEmail: email ?? "lk@gmail.com",
-        ))));
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: ((context) => HotelListScreen(
+                      fbAccessToken: accessToken!.token,
+                      fbName: profile!.name!,
+                      fbId: profile.userId!,
+                      fbEmail: email ?? "lk@gmail.com",
+                    ))));
 
         // But user can decline permission
-        if (email != null){
+        if (email != null) {
           print('And your email is $email');
 
           //push to success page after successfully signed in
-          Navigator.push(context, MaterialPageRoute(builder: ((context) => HotelListScreen(
-            fbAccessToken: accessToken!.token,
-            fbName: profile!.name!,
-            fbId: profile.userId!,
-            fbEmail: email!,
-          ))));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: ((context) => HotelListScreen(
+                        fbAccessToken: accessToken!.token,
+                        fbName: profile!.name!,
+                        fbId: profile.userId!,
+                        fbEmail: email!,
+                      ))));
           break;
         }
       case FacebookLoginStatus.cancel:

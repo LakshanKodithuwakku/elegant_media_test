@@ -16,21 +16,16 @@ class CustomButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        fixedSize: Size(double.infinity, 50),
-        primary: backgroundColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
+        backgroundColor: appbarcolor, // Set the background color
+        foregroundColor: textWhite, // Set the text color
+        padding: EdgeInsets.symmetric(horizontal: 80, vertical: 10), // Set padding
+        textStyle: TextStyle(fontSize: 18), // Set text style
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5), // Set border radius
+        ),
       ),
       onPressed: onTap,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text( title , style: TextStyle(
-              color: textBlack,
-            )
-          ),
-        ],
-      ),
+      child: Text(title)
     );
   }
 }

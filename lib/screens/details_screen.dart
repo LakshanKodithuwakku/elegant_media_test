@@ -1,4 +1,5 @@
 import 'package:elegant_media_test/screens/map_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
@@ -40,7 +41,7 @@ class _DetailScreenState extends State<DetailScreen> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.location_pin),
+            icon: Icon(Icons.location_pin,color: textBlack,size: 30,),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: ((context) => MapScreen(hotelId: hotel.id,
               ))));
@@ -59,7 +60,7 @@ class _DetailScreenState extends State<DetailScreen> {
               color: appbarcolor,
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(
+                image: NetworkImage(//(hotel.smallImage),
                     "https://assets.vogue.in/photos/5ce435fecc50be4b0d1402b4/2:3/w_2560%2Cc_limit/Shivani-the-Indian-artist-from-Now-United.jpg"),
               ),
             ),
