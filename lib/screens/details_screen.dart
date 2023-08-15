@@ -69,8 +69,8 @@ class _DetailScreenState extends State<DetailScreen> {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: NetworkImage(//(hotel.smallImage),
-                    // dummyImgURL),
-                    fbPropImgURL),
+                     dummyImgURL),
+                    //fbPropImgURL),
               ),
             ),
           ),

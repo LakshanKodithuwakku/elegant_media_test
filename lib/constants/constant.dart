@@ -1,4 +1,3 @@
-
 const hotelAPI = "https://dl.dropboxusercontent.com/s/6nt7fkdt7ck0lue/hotels.json";
 const fbPropImgURL = "https://graph.facebook.com/v16.0/3673706736289774/picture?height=100&width=100&migration_overrides=%7Boctober_2012%3Atrue%7D&access_token=EAAOOdVOPPSsBO9QZCh9HPNPtyO3jJmukc8mGCUoZCL3B9jO9zZBgC7v8fFO4QZCsVnaB5ErjoCPYagak4aMiuIkKscvoKp3C2m1GJT9HPsJqvWPFAh9xu9szEpaTbyS3w1usDEpIiQTUvcPWKBkBuYkizCFv3d8P1b6cZCiD7ZAmAHgfttji7tzGiQvs1mrHhkFU3r67VsQ2NrqYyLDj6nrBYuZBfKHux3oktXV4QgOHSNZCnSaPYl84rgZDZD";
 const dummyImgURL = "https://assets.vogue.in/photos/5ce435fecc50be4b0d1402b4/2:3/w_2560%2Cc_limit/Shivani-the-Indian-artist-from-Now-United.jpg";
