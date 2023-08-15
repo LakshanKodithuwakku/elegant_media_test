@@ -7,6 +7,19 @@ import '../services/hotel_service.dart';
 
 List<Hotel> hotels = [];
 class HotelListScreen extends StatefulWidget {
+  final String fbName;
+  final String fbEmail;
+  final String fbId;
+  final String fbAccessToken;
+
+  const HotelListScreen(
+      {Key? key,
+        required this.fbName,
+        required this.fbEmail,
+        required this.fbId,
+        required this.fbAccessToken})
+      : super(key: key);
+
   @override
   _HotelListScreenState createState() => _HotelListScreenState();
 }
@@ -59,8 +72,8 @@ class _HotelListScreenState extends State<HotelListScreen> {
               child: Center(
                 child: Column(
                   children: [
-                    Text("Lakshan Kodithuwakku", style: TextStyle(fontSize: 25),),
-                    Text('assigment@gmail.com', style: TextStyle(
+                    Text(widget.fbName, style: TextStyle(fontSize: 25),),
+                    Text(widget.fbEmail, style: TextStyle(
                       color: textGrey,
                     ),),
                     ElevatedButton(
