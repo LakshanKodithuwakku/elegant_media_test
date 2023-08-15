@@ -4,7 +4,7 @@ import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import '../components/custom_button_widget.dart';
 import '../components/custom_textfield.dart';
 import '../components/custom_textfield_password.dart';
-import '../components/socialbutton.dart';
+import '../components/social_button.dart';
 import '../constants/colors.dart';
 import 'hotel_list_screen.dart';
 
