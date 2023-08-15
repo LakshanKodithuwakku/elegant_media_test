@@ -1,40 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SocialButton extends StatelessWidget {
-  double width;
-  double height;
-  String text;
-  Function onPressed;
-  Color color;
-  String logo;
+import '../constants/colors.dart';
 
-  SocialButton(
-      {required this.width,
-      required this.height,
-      required this.text,
-      required this.onPressed,
-      required this.color,
-      required this.logo});
+class SocialButton extends StatelessWidget {
+  String imagePath;
+  final GestureTapCallback? onTap;
+
+  SocialButton({
+    required this.imagePath,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: this.height,
-      width: this.width,
-      child: ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(this.color),
-          shape: MaterialStateProperty.all<CircleBorder>(
-            CircleBorder(),
-          ),
-        ),
-        child: Image.asset(
-          this.logo,
-          fit: BoxFit.fill,
-        ),
-        onPressed: () {},
-      ),
-    );
+    return Tab(
+        icon: GestureDetector(
+            onTap: onTap,
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Container(
+                    height: 50,
+                    width: 50,
+                    color: backgroundWhite,
+                    child: Image.asset(imagePath)))));
   }
 }

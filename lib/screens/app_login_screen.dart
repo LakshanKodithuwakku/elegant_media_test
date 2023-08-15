@@ -4,6 +4,7 @@ import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import '../components/custom_button_widget.dart';
 import '../components/custom_textfield.dart';
 import '../components/custom_textfield_password.dart';
+import '../components/socialbutton.dart';
 import '../constants/colors.dart';
 import 'hotel_list_screen.dart';
 
@@ -144,14 +145,18 @@ class _LoginScreenState extends State<LoginScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Tab(icon: Image.asset("assets/images/applelogo.png")),
-        Tab(
-            icon: GestureDetector(
-                onTap: () {
-                  _facebookLogin();
-                },
-                child: Image.asset("assets/images/facebook.png"))),
-        Tab(icon: Image.asset("assets/images/googleicon.png")),
+        SocialButton(
+          imagePath: 'assets/images/applelogo.png',
+        ),
+        SocialButton(
+          imagePath: 'assets/images/facebook.png',
+          onTap: () {
+            _facebookLogin();
+          },
+        ),
+        SocialButton(
+          imagePath: 'assets/images/googleicon.png',
+        ),
       ],
     );
   }
